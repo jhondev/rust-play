@@ -1,14 +1,28 @@
-pub fn add(left: usize, right: usize) -> usize {
-    left + right
+//! This is a library that provides utilities for cli applications.
+
+use std::io::{BufReader, BufRead};
+
+/// Reads a line from the standard input (stdin) and returns it as a String.
+/// # Examples
+/// ```
+/// let input = read_stdin();
+/// println!("{}", input);
+/// ```
+///
+/// # Panics
+///
+/// This function will panic if it fails to read a line from stdin.
+///
+/// # Returns
+///
+/// A String containing the line read from stdin, without the trailing newline character.mentation for read_stdin
+pub fn read_stdin() -> String {
+    let stdin = std::io::stdin();
+    let mut reader = BufReader::new(stdin.lock());
+    let mut line = String::new();
+    reader.read_line(&mut line).expect("Failed to read input line");
+    line.trim().to_string()
 }
 
-#[cfg(test)]
-mod tests {
-    use super::*;
 
-    #[test]
-    fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
-    }
-}
+
