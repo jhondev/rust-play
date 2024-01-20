@@ -2,6 +2,8 @@
 
 use std::io::{BufRead, BufReader};
 
+pub mod colors;
+
 /// Reads a line from the standard input (stdin) and returns it as a String.
 /// # Examples
 /// ```
@@ -16,7 +18,8 @@ use std::io::{BufRead, BufReader};
 /// # Returns
 ///
 /// A String containing the line read from stdin, without the trailing newline character.mentation for read_stdin
-pub fn read_stdin() -> String {
+pub fn read_stdin(msg: &str) -> String {
+    println!("{}", msg);
     let stdin = std::io::stdin();
     let mut reader = BufReader::new(stdin.lock());
     let mut line = String::new();
