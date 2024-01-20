@@ -1,3 +1,5 @@
+use std::io::stdin;
+
 use clap::Parser;
 use cli_utils::{colors, read_stdin};
 
@@ -10,7 +12,7 @@ struct Args {
 
 fn main() {
     let args = Args::parse();
-    let buffer = read_stdin("Enter some text:");
+    let buffer = read_stdin("Enter some text:", &mut stdin().lock()); // Add the `stdin` reader as the second argument
     println!("{:?}", args);
     println!("{}", colors::red(&buffer));
 }
