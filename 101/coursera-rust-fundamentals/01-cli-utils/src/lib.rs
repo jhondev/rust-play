@@ -1,6 +1,6 @@
 //! This is a library that provides utilities for cli applications.
 
-use std::io::{BufReader, BufRead};
+use std::io::{BufRead, BufReader};
 
 /// Reads a line from the standard input (stdin) and returns it as a String.
 /// # Examples
@@ -20,9 +20,8 @@ pub fn read_stdin() -> String {
     let stdin = std::io::stdin();
     let mut reader = BufReader::new(stdin.lock());
     let mut line = String::new();
-    reader.read_line(&mut line).expect("Failed to read input line");
+    reader
+        .read_line(&mut line)
+        .expect("Failed to read input line");
     line.trim().to_string()
 }
-
-
-
